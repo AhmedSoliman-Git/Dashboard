@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "Alkaline";
+  src: url("./Fonts/AlkalineTest-Medium-BF676e1b6c9ed61.otf");
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("./Fonts/Poppins_Complete/Fonts/OTF/Poppins-Medium.otf");
+}
+@font-face {
+  font-family: "Clash";
+  src: url("./Fonts/ClashDisplay_Complete/Fonts/OTF/ClashDisplay-Medium.otf");
+}
+@font-face {
+  font-family: "Inter";
+  src: url("./Fonts/Inter.ttc");
+}
+
+@import "tailwindcss";
+
+@theme {
+  --font-alkaline: "Alkaline", "sans-serif";
+  --font-Poppins: "Poppins", "sans-serif";
+  --font-Clash: "Clash", "sans-serif";
+  --font-Inter: "Inter", "sans-serif";
+}

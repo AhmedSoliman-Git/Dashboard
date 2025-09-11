@@ -5,24 +5,62 @@ import { IoIosLogOut } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FiBarChart2 } from "react-icons/fi";
 import { BiSupport } from "react-icons/bi";
+import { useAppSelector } from "../utils/hooks";
 
 const Sidebar: React.FC = () => {
+  let otherTheme =
+    "relative ease-in-out duration-300 h-[100vh] overflow-hidden w-[300px] py-1.5 bg-black border-r-1 border-[#f5f5f5] shadow-lg flex flex-col justify-between";
 
+  const sideStatus: boolean = useAppSelector(
+    (state) => state.sidebarReducer.opened
+  );
+
+  let SideClass =
+    "relative ease-in-out duration-300 h-[100vh] overflow-hidden w-[300px] py-1.5 bg-linear-to-b from-[#ffffff] to-[#fbe7e2] border-r-1 border-[#f5f5f5] shadow-lg flex flex-col justify-between";
+  if (sideStatus)
+    SideClass =
+      "relative ease-in-out duration-300 h-[100vh] overflow-hidden w-[40px] py-1.5 bg-linear-to-b from-[#ffffff] to-[#fbe7e2] border-r-1 border-[#f5f5f5] shadow-lg flex flex-col justify-between";
   return (
-    <div className="h-[100vh] overflow-hidden w-[300px] py-1.5 bg-linear-to-b from-[#ffffff] to-[#fbe7e2] border-r-1 border-[#f5f5f5] shadow-lg flex flex-col justify-between">
+    <div className={SideClass}>
       <div>
         <Menu />
         <div>
           <ul className="flex flex-col justify-center items-center">
-            <Listitem icon={<RxDashboard />} text="Dashboard" />
-            <Listitem icon={<FiBarChart2 />} text="Statistics" />
-            <Listitem icon={<IoSettingsOutline />} text="Setting" />
+            <Listitem
+              title="Dashboard"
+              ariaLabel="Dashboard"
+              icon={<RxDashboard />}
+              text="Dashboard"
+            />
+            <Listitem
+              ariaLabel="Statistics"
+              icon={<FiBarChart2 />}
+              text="Statistics"
+              title="Statistics"
+            />
+            <Listitem
+              ariaLabel="Settings"
+              icon={<IoSettingsOutline />}
+              text="Setting"
+              title="Setting"
+            />
           </ul>
         </div>
       </div>
+
       <p className="flex flex-col justify-center items-center">
-        <Listitem icon={<BiSupport />} text="help" />
-        <Listitem icon={<IoIosLogOut />} text="Logout" />
+        <Listitem
+          ariaLabel="Help"
+          icon={<BiSupport />}
+          text="help"
+          title="Help"
+        />
+        <Listitem
+          ariaLabel="Logout"
+          icon={<IoIosLogOut />}
+          text="Logout"
+          title="Logout"
+        />
       </p>
     </div>
   );

@@ -1,4 +1,4 @@
-import BurgerMenu from "./BurgerMenu";
+import BurgerMenu from "./BugerItems/BurgerMenu";
 import { useAppSelector } from "../utils/hooks";
 const Menu = () => {
   const sideStatus: boolean = useAppSelector(

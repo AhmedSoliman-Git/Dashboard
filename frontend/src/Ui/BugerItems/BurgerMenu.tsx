@@ -1,8 +1,7 @@
-import { sidebarActions } from "../Store/sidebarSlice";
-import { useAppDispatch } from "../utils/hooks";
-import BurgerItem from "./BurgerItem";
+import { sidebarActions } from "../../Store/sidebarSlice";
+import { useAppDispatch } from "../../utils/hooks";
+import BurgerItem from ".././BugerItems/BurgerItem";
 const BurgerMenu: React.FC = () => {
-
   const dispatch = useAppDispatch();
   function changeSideStatus(): void {
     dispatch(sidebarActions.openSideBar());

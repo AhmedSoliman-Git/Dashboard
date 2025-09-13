@@ -16,10 +16,10 @@ const Sidebar: React.FC = () => {
   );
 
   let SideClass =
-    "relative ease-in-out duration-300 h-[100vh] overflow-hidden w-[300px] py-1.5 bg-linear-to-b from-[#ffffff] to-[#fbe7e2] border-r-1 border-[#f5f5f5] shadow-lg flex flex-col justify-between";
+    "fixed w-full md:fixed z-100 ease-in-out duration-300 h-[100vh] overflow-hidden md:w-[300px] py-1.5 bg-linear-to-b from-[#ffffff] to-[#fbe7e2] border-r-1 border-[#f5f5f5] shadow-lg flex flex-col justify-between";
   if (sideStatus)
     SideClass =
-      "relative ease-in-out duration-300 h-[100vh] overflow-hidden w-[40px] py-1.5 bg-linear-to-b from-[#ffffff] to-[#fbe7e2] border-r-1 border-[#f5f5f5] shadow-lg flex flex-col justify-between";
+      "fixed md:fixed z-100 ease-in-out duration-300 h-[100vh] overflow-hidden w-[40px] py-1.5 bg-linear-to-b from-[#ffffff] to-[#fbe7e2] border-r-1 border-[#f5f5f5] shadow-lg flex flex-col justify-between";
   return (
     <div className={SideClass}>
       <div>

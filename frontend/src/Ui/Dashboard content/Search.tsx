@@ -5,7 +5,7 @@ import { HiViewfinderCircle } from "react-icons/hi2";
 const Search: React.FC<{}> = (props) => {
   const searchValue = useRef<HTMLInputElement>(null);
   return (
-    <form className="w-[60%] mt-5 m-auto font-Poppins font-extralight">
+    <form className="w-[70%] my-5 md:w-[60%] mt-5 m-auto font-Poppins font-extralight">
       <p className="flex items-center space-x-4 border-[#b7b9bb] border rounded-2xl px-4">
         <CiSearch size="1.5rem" color="#b7b9bb" />
         <input

@@ -12,7 +12,7 @@ const Modal: React.FC<{ children: ReactNode; onClose: () => void }> = (
       modal.showModal();
     }
     return () => {
-      modal.close(); // needed to avoid error being thrown
+      modal.close(); 
     };
   }, []);
 

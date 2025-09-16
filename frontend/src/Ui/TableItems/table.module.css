@@ -1,0 +1,7 @@
+.borders tr {
+  border-bottom: 1px solid #f7f7f7;
+}
+
+.borders tr:last-child {
+  border: none;
+}

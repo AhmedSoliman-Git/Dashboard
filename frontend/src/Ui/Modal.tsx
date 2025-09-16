@@ -1,6 +1,6 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-
+import classes from "./modal.module.css";
 const Modal: React.FC<{ children: ReactNode; onClose: () => void }> = (
   props
 ) => {
@@ -12,12 +12,12 @@ const Modal: React.FC<{ children: ReactNode; onClose: () => void }> = (
       modal.showModal();
     }
     return () => {
-      modal.close(); 
+      modal.close();
     };
   }, []);
 
   return createPortal(
-    <dialog className="modal" ref={dialog} onClose={props.onClose}>
+    <dialog className={classes.modal} ref={dialog}>
       {props.children}
     </dialog>,
     document.getElementById("modal")!

@@ -67,7 +67,7 @@ Backend: http://localhost:8080
 | `/login` | POST | User login | ❌ No |
 | `/signup` | POST | Create account | ❌ No |
 | `/events` | GET | Fetch all items | ✅ JWT |
-| `/events/:id` | PUT | Edit item | ✅ JWT |
+| `/events/:id` | PUT - Post | Edit item & Add Item | ✅ JWT |
 | `/events/:id` | DELETE | Delete item | ✅ JWT |
 
 ## 4. API Features

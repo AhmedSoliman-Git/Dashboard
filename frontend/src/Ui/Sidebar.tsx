@@ -9,8 +9,7 @@ import { DeleteToken, useAppSelector } from "../utils/hooks";
 import { useNavigate } from "react-router";
 
 const Sidebar: React.FC = () => {
-  let otherTheme =
-    "relative ease-in-out duration-300 h-[100vh] overflow-hidden w-[300px] py-1.5 bg-black border-r-1 border-[#f5f5f5] shadow-lg flex flex-col justify-between";
+ 
 
   const sideStatus: boolean = useAppSelector(
     (state) => state.sidebarReducer.opened

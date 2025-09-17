@@ -9,8 +9,8 @@ import {
 } from "react-router";
 
 import { getToken } from "../utils/hooks";
-import classes from './Form.module.css'
-
+import classes from "./Form.module.css";
+import { toast } from "react-toastify";
 
 type EventData = {
   title?: string;
@@ -40,7 +40,9 @@ const EventForm: React.FC<{
       {data && data.errors && (
         <ul>
           {Object.values(data.errors).map((err: any) => (
-            <li key={err}>{err}</li>
+            <li className="text-red-800 font-Clash" key={err}>
+              {err}
+            </li>
           ))}
         </ul>
       )}
@@ -122,7 +124,6 @@ export default EventForm;
 export async function action({ request, params }: ActionFunctionArgs) {
   const method = request.method;
   const data = await request.formData();
-  const token = getToken();
   const eventData = {
     title: data.get("title"),
     image: data.get("image"),
@@ -137,6 +138,11 @@ export async function action({ request, params }: ActionFunctionArgs) {
   if (method === "PATCH") {
     const eventId = params.id;
     url = "http://localhost:8080/events/" + eventId;
+  }
+  const token = getToken();
+
+  if (!token) {
+    return redirect("/");
   }
 
   const response = await fetch(url, {
@@ -153,20 +159,31 @@ export async function action({ request, params }: ActionFunctionArgs) {
   }
 
   if (!response.ok) {
+    toast.error("Error Occured");
     throw new Response(
       JSON.stringify({ message: "An Error Occured , try to Login" })
     );
   }
-
+  toast.success(
+    method === "PATCH"
+      ? "Edit was done Successfully"
+      : "Item was added Successfully"
+  );
   return redirect("..");
 }
 
 export async function eventLoaded({ params, request }: ActionFunctionArgs) {
   const eventId = params.id;
+
+  const token = getToken();
+
+  if (!token) {
+    return redirect("/");
+  }
   const response = await fetch("http://localhost:8080/events/" + eventId, {
     method: request.method,
     headers: {
-      Authorization: "Bearer " + getToken(),
+      Authorization: "Bearer " + token,
     },
   });
 

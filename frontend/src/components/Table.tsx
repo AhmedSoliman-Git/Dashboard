@@ -15,6 +15,7 @@ import {
 import { getToken, useAppSelector } from "../utils/hooks";
 import { useState } from "react";
 import TablePaginationBtn from "../Ui/TableItems/TablePaginationBtn";
+import { toast } from "react-toastify";
 
 const Table: React.FC = () => {
   type Item = {
@@ -39,7 +40,7 @@ const Table: React.FC = () => {
   );
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 7;
+  const itemsPerPage = 10;
 
   const totalPages = Math.ceil(filteredEvents.length / itemsPerPage);
 
@@ -52,26 +53,28 @@ const Table: React.FC = () => {
   function startDeleteHandler(id: string) {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
+      toast.info(" Item Is Deleted ⌛...");
+
       submit(null, { method: "delete", action: `/dashboard/${id}` });
     }
   }
 
   return (
     <>
-      <div className="flex justify-between items-center">
-        <h1 className="text-left font-alkaline text-4xl my-10">
+      <div className="md:flex sm:space-x-3 md:justify-between items-center">
+        <h1 className="text-left text-3xl sm:text-4xl md:text-2xl lg:text-4xl font-alkaline my-10">
           Our Lovely Dashboard
         </h1>
-        <div className="flex space-x-3 items-center px-5 py-2 bg-black font-Poppins cursor-pointer rounded-2xl text-white">
-          <IoIosAddCircleOutline size="1.5rem" />
-          <Link to="new" className="cursor-pointer">
+        <div className="w-fit my-3 px-3 py-1 text-sm md:text-[0.8rem] lg:text-[1rem] flex space-x-3 items-center md:px-5 md:py-2 bg-black font-Poppins cursor-pointer rounded-2xl text-white">
+          <IoIosAddCircleOutline size="1.1rem" />
+          <Link to="new" className="cursor-pointer ">
             Add Product
           </Link>
         </div>
       </div>
 
-      <section className="w-full h-[100vh] my">
-        <table className="w-full min-w-[1000px] font-Poppins border-collapse border-spacing-0 border border-[#e8fbeb] shadow-xl ">
+      <section className=" m-auto sm:w-[540px] lg:w-full overflow-x-auto ">
+        <table className="w-[1000px] lg:w-full font-Poppins border-collapse border-spacing-0 border border-[#e8fbeb] shadow-xl ">
           <thead>
             <Tr TRclass=" text-center bg-[#ffffff]">
               <Th THclass="p-5" THtxt="Product" colSpan={2} />
@@ -129,26 +132,31 @@ const Table: React.FC = () => {
         </table>
 
         {/* Pagination */}
-        <div className="flex justify-center items-center space-x-3 mt-5">
-          <TablePaginationBtn
-            disabledBtn={currentPage === 1}
-            func={() => setCurrentPage((p) => p - 1)}
-            text="Prev"
-          />
-
-          <p className="font-Poppins">
-            Page{" "}
-            <span className="p-2 bg-red-100 rounded-lg">{currentPage}</span> of{" "}
-            <span className="p-2 bg-red-100 rounded-lg">{totalPages}</span>
-          </p>
-
-          <TablePaginationBtn
-            disabledBtn={currentPage === totalPages}
-            func={() => setCurrentPage((p) => p + 1)}
-            text="Next"
-          />
-        </div>
       </section>
+      <div className="flex justify-center items-center space-x-3 my-5">
+        <TablePaginationBtn
+          disabledBtn={currentPage === 1}
+          func={() => setCurrentPage((p) => p - 1)}
+          text="Prev"
+        />
+
+        <p className="font-Poppins">
+          Page{" "}
+          <span className=" text-sm md:text-[0.8rem] p-2 bg-red-100 rounded-lg">
+            {currentPage}
+          </span>{" "}
+          of{" "}
+          <span className=" text-sm md:text-[0.8rem] p-2 bg-red-100 rounded-lg">
+            {totalPages}
+          </span>
+        </p>
+
+        <TablePaginationBtn
+          disabledBtn={currentPage === totalPages}
+          func={() => setCurrentPage((p) => p + 1)}
+          text="Next"
+        />
+      </div>
     </>
   );
 };
@@ -156,6 +164,8 @@ export default Table;
 
 export async function loadEvents() {
   const response = await fetch("http://localhost:8080/events");
+  const token = getToken();
+  if (!token) return redirect("/");
 
   if (!response.ok) {
     throw new Response(JSON.stringify({ message: "Could not fetch Items." }), {

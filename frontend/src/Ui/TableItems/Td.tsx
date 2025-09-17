@@ -5,7 +5,10 @@ const Td: React.FC<{
   children: React.ReactNode;
 }> = (props) => {
   return (
-    <td colSpan={props.colSpan} scope="row" className={props.TDclass + ' text-center p-5'}>
+    <td
+      colSpan={props.colSpan}
+      scope="row"
+      className={props.TDclass + " text-sm lg:text-[1rem] text-center p-5"}>
       {props.children}
     </td>
   );

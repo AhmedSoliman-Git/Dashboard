@@ -45,11 +45,10 @@ const Statistics = () => {
     <>
       <Heading text="Statistics" />
       <div className={classes.statistics}>
-        <div className={classes.item1}>
-          <ResponsiveContainer height="100%">
+        <div className={classes.item1} >
+          <ResponsiveContainer width="100%" height="100%">
             <LineChart
-              width={500}
-              height={1000}
+            
               data={chartData}
               margin={{
                 top: 5,
@@ -74,7 +73,7 @@ const Statistics = () => {
         </div>
 
         <div className={classes.item2}>
-          <ResponsiveContainer height="100%">
+          <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={stockData2}
@@ -98,7 +97,6 @@ const Statistics = () => {
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div></div>
       </div>
     </>
   );

@@ -4,7 +4,7 @@ const TablePaginationBtn: React.FC<{
   func: () => void;
 }> = (props) => {
   let pagClass =
-    " hover:bg-gray-400 hover:text-white px-3 py-1 font-Clash bg-gray-200 rounded disabled:opacity-50";
+    " hover:bg-gray-400 text-sm md:text-[0.9rem] hover:text-white px-3 py-1 font-Clash bg-gray-200 rounded disabled:opacity-50";
   return (
     <button
       disabled={props.disabledBtn}

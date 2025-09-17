@@ -5,7 +5,8 @@ import { IoIosLogOut } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FiBarChart2 } from "react-icons/fi";
 import { BiSupport } from "react-icons/bi";
-import { useAppSelector } from "../utils/hooks";
+import { DeleteToken, useAppSelector } from "../utils/hooks";
+import { useNavigate } from "react-router";
 
 const Sidebar: React.FC = () => {
   let otherTheme =
@@ -14,12 +15,18 @@ const Sidebar: React.FC = () => {
   const sideStatus: boolean = useAppSelector(
     (state) => state.sidebarReducer.opened
   );
+  const navigate = useNavigate();
+  function handleLogout() {
+    DeleteToken();
+    navigate("/");
+  }
 
   let SideClass =
-    "fixed w-full md:fixed z-100 ease-in-out duration-300 h-[100vh] overflow-hidden md:w-[300px] py-1.5 bg-linear-to-b from-[#ffffff] to-[#fbe7e2] border-r-1 border-[#f5f5f5] shadow-lg flex flex-col justify-between";
+    "fixed w-full z-100 ease-in-out duration-300 h-[100vh] overflow-hidden md:w-[300px] py-1.5 bg-linear-to-b from-[#ffffff] to-[#fbe7e2] border-r-1 border-[#f5f5f5] shadow-lg flex flex-col justify-between";
   if (sideStatus)
     SideClass =
-      "fixed md:fixed z-100 ease-in-out duration-300 h-[100vh] overflow-hidden w-[40px] py-1.5 bg-linear-to-b from-[#ffffff] to-[#fbe7e2] border-r-1 border-[#f5f5f5] shadow-lg flex flex-col justify-between";
+      "fixed z-100 ease-in-out duration-300 h-[100vh] overflow-hidden w-[40px] py-1.5 bg-linear-to-b from-[#ffffff] to-[#fbe7e2] border-r-1 border-[#f5f5f5] shadow-lg flex flex-col justify-between";
+
   return (
     <div className={SideClass}>
       <div>
@@ -60,13 +67,17 @@ const Sidebar: React.FC = () => {
           text="help"
           title="Help"
         />
-        <Listitem
-          itemLink="/logout"
-          ariaLabel="Logout"
-          icon={<IoIosLogOut />}
-          text="Logout"
-          title="Logout"
-        />
+        <button
+          className="flex space-x-4 w-[90%] text-[#555b5b] my-2 items-center py-2 rounded-2xl transition-all duration-200 hover:bg-linear-to-l from-[#e6ddf7] to-[#ebdae4] cursor-pointer hover:text-black "
+          onClick={handleLogout}>
+          <span className="text-[1.2rem]  ml-2">
+            {" "}
+            <IoIosLogOut />
+          </span>{" "}
+          <span className=" font-semibold text-[0.8rem] my-2 font-Inter">
+            Logout
+          </span>
+        </button>
       </p>
     </div>
   );

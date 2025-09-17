@@ -1,6 +1,10 @@
 function isValidText(value, minLength = 1) {
-  return value && value.trim().length >= minLength;
+  return (
+    typeof value === "string" && 
+    value.trim().length >= minLength
+  );
 }
+
 
 function isValidImageUrl(value) {
   return value && value.startsWith('http');

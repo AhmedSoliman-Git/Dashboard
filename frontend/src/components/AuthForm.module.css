@@ -1,48 +1,148 @@
-.form {
-  max-width: 40rem;
-  margin: 2rem auto;
+.sideDiv {
+  width: 100%;
+  height: 100vh;
+  background: url("../images/image3.jpg");
+  animation: textbackground 30s linear infinite alternate;
 }
 
-.form label,
-.form input,
-.form textarea {
-  display: block;
+
+/* 
+.form {
+  width: 50%;
+  height: 100vh;
+  background-image: url("../images/image2.jpg");
+  position: relative;
+}
+form {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  width: 50%;
+  height: 400px;
+  background-color: rgb(250, 248, 248);
+  border: 1px solid gray;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+p {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5rem;
+  width: 90%;
+}
+label {
+  font-size: 2rem;
+  font-family: "Clash";
+}
+input {
+  width: 100%;
+  border: 1px solid black;
+  outline: none;
+}
+.actions {
+  display: flex;
+  gap: 2rem;
+  margin-left: 0.5rem;
+}
+.actions a ,
+.actions button {
+  padding: 0.5rem 1rem;
+  margin-top: 2rem;
+  font-family: "Clash";
+  background-color: rgb(227, 220, 220);
+  transition: all 0.3s ease;
+}
+
+.actions a:hover ,
+.actions button:hover {
+  background-color: gray;
+} 
+ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* مسافة بين العناصر */
+  width: 420px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.9); /* شبه شفاف */
+  border-radius: 1rem; /* زوايا دائرية */
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Clash", sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form:hover {
+  transform: translate(-50%, -50%) scale(1.02); /* تكبير خفيف عند الـ hover */
+  box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+.form p {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
   width: 100%;
 }
 
-.form input,
-.form textarea {
-  font: inherit;
-  padding: 0.25rem;
+.form label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
 }
 
-.actions {
+.form input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form input:focus {
+  border: 1px solid #8884d8; /* لون مميز */
+  box-shadow: 0 0 8px rgba(136, 132, 216, 0.5);
+}
+
+.form .actions {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
-  align-items: center;
+  margin-top: 1rem;
 }
 
-.actions button {
-  font: inherit;
-  cursor: pointer;
-  padding: 0.5rem 1.5rem;
-  border-radius: 4px;
-  background-color: var(--color-gray-300);
-  color: var(--color-gray-800);
+.form .actions a,
+.form .actions button {
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
   border: none;
-}
-
-.actions a {
+  cursor: pointer;
+  background-color: #8884d8;
+  color: white;
+  transition: all 0.3s ease;
   text-decoration: none;
-  background-color: transparent;
-  color: var(--color-gray-300);
 }
 
-.actions button:hover {
-  background-color: var(--color-primary-300);
+.form .actions a:hover,
+.form .actions button:hover {
+  background-color: #6c63ff;
 }
 
-.actions a:hover {
-  background-color: var(--color-gray-800);
+@keyframes textbackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 100%;
+  }
 }

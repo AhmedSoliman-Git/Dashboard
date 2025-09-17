@@ -8,6 +8,9 @@ import { action as authenticaionAction } from "./components/Authentication";
 import { action as DeleteAction, loadEvents } from "./components/Table";
 import { eventLoaded } from "./components/Form";
 import { action as manipulateAction } from "./components/Form";
+import { ToastContainer } from "react-toastify";
+import { checkToken } from "./utils/hooks";
+import ErrorElement from "./Ui/ErrorElement";
 function App() {
   const Settings = lazy(() => import("./components/Settings"));
   const NewItem = lazy(() => import("./components/NewItem"));
@@ -17,6 +20,7 @@ function App() {
       index: true,
       element: <AuthenticationPage />,
       action: authenticaionAction,
+      errorElement: <ErrorElement />,
     },
 
     {
@@ -24,8 +28,15 @@ function App() {
       element: <Dashboard />,
       loader: loadEvents,
       action: DeleteAction,
+      errorElement: <ErrorElement />,
+
       children: [
-        { path: "new", element: <NewItem />, action: manipulateAction },
+        {
+          path: "new",
+          element: <NewItem />,
+          action: manipulateAction,
+          loader: checkToken,
+        },
         {
           path: ":id/Edit",
           element: <EditItem />,
@@ -38,11 +49,12 @@ function App() {
         },
       ],
     },
-    { path: "/settings", element: <Settings /> },
+    { path: "/settings", element: <Settings />, loader: checkToken },
   ]);
   return (
     <>
       <RouterProvider router={router} />
+      <ToastContainer />
     </>
   );
 }

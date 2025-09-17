@@ -27,18 +27,22 @@ const Sidebar: React.FC = () => {
         <div>
           <ul className="flex flex-col justify-center items-center">
             <Listitem
+              itemLink="/dashboard"
               title="Dashboard"
               ariaLabel="Dashboard"
               icon={<RxDashboard />}
               text="Dashboard"
+              end
             />
             <Listitem
+              itemLink="/Statistics"
               ariaLabel="Statistics"
               icon={<FiBarChart2 />}
               text="Statistics"
               title="Statistics"
             />
             <Listitem
+              itemLink="/settings"
               ariaLabel="Settings"
               icon={<IoSettingsOutline />}
               text="Setting"
@@ -50,12 +54,14 @@ const Sidebar: React.FC = () => {
 
       <p className="flex flex-col justify-center items-center">
         <Listitem
+          itemLink="/help"
           ariaLabel="Help"
           icon={<BiSupport />}
           text="help"
           title="Help"
         />
         <Listitem
+          itemLink="/logout"
           ariaLabel="Logout"
           icon={<IoIosLogOut />}
           text="Logout"

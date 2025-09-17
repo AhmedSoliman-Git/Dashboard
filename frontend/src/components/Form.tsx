@@ -7,8 +7,10 @@ import {
   useNavigate,
   useNavigation,
 } from "react-router";
+
 import { getToken } from "../utils/hooks";
-import classes from "./Form.module.css";
+import classes from './Form.module.css'
+
 
 type EventData = {
   title?: string;
@@ -27,7 +29,6 @@ const EventForm: React.FC<{
   const data = useActionData();
   const navigate = useNavigate();
   const navigation = useNavigation();
-
   const isSubmitting = navigation.state === "submitting";
 
   function cancelHandler() {
@@ -134,7 +135,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
   let url = "http://localhost:8080/events";
 
   if (method === "PATCH") {
-    const eventId = params.eventId;
+    const eventId = params.id;
     url = "http://localhost:8080/events/" + eventId;
   }
 
@@ -157,11 +158,11 @@ export async function action({ request, params }: ActionFunctionArgs) {
     );
   }
 
-  return redirect("/dashboard");
+  return redirect("..");
 }
 
 export async function eventLoaded({ params, request }: ActionFunctionArgs) {
-  const eventId = params.eventId;
+  const eventId = params.id;
   const response = await fetch("http://localhost:8080/events/" + eventId, {
     method: request.method,
     headers: {
@@ -171,8 +172,10 @@ export async function eventLoaded({ params, request }: ActionFunctionArgs) {
 
   if (!response.ok) {
     throw new Response(
-      JSON.stringify({ message: "An Error Occured , try Again" })
+      JSON.stringify({ message: "Can't Fetch The Item Data" })
     );
   }
-  return redirect("/dashboard");
+  const resdata = response.json();
+
+  return resdata;
 }

@@ -1,17 +1,27 @@
-import { useRef } from "react";
+import { useAppDispatch , useAppSelector } from "../../utils/hooks";
+import { setSearchQuery } from "../../Store/searchSlice";
 import { CiSearch } from "react-icons/ci";
 import { HiViewfinderCircle } from "react-icons/hi2";
 
 const Search: React.FC<{}> = (props) => {
-  const searchValue = useRef<HTMLInputElement>(null);
+  const dispatch = useAppDispatch();
+  const searchValue = useAppSelector((state) => state.searchReducer.query);
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    dispatch(setSearchQuery(e.target.value));
+  }
+
   return (
-    <form className="w-[70%] my-5 md:w-[60%] mt-5 m-auto font-Poppins font-extralight">
+    <form
+      onSubmit={(e) => e.preventDefault}
+      className="w-[70%] my-5 md:w-[60%] mt-5 m-auto font-Poppins font-extralight">
       <p className="flex items-center space-x-4 border-[#b7b9bb] border rounded-2xl px-4">
         <CiSearch size="1.5rem" color="#b7b9bb" />
         <input
           className="w-full border-0 outline-0 p-2 "
           type="text"
+          value={searchValue}
           placeholder="Search or type a command"
+          onChange={handleChange}
         />
 
         <span
